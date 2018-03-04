@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">BookClub</string>
+    <string name="preference_file_key">tokenFile</string>
+    <string name="token">token</string>
+    <string name="ClientId">648965550244-r9ndo8mmvg60gi9sltrm9igpqbd70o67.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">584560401889897</string>
+    <string name="facebook_application_id">584560401889897</string>
+    <string name="fb_login_protocol_scheme">fb584560401889897</string>
+    <string name="twitter_consumer_key" translatable="false">KggcoCCD4rfrIrtI01L0KrOWY</string>
+    <string name="twitter_consumer_secret" translatable="false">JA6DmHjOy9baZDqvijj5q0zKXoMduEbNG8bzWT20qAybz88eyp</string>
+
+    <string name="sign_in_request_connected">Please Sign in to continue</string>
+    <string name="sign_in_request_not_connected">Please Check your Internet connection and try Again</string>
+    <string name="sign_in">Sign In</string>
+    <array name="fragmentsTitle">
+        <item>New Books</item>
+        <item>My Books</item>
+    </array>
+    <string name="appwidget_text">Chat List</string>
+    <string name="add_widget">Add widget</string>
+    <string name="search_hint">Search Clubs </string>
+    <string name="chatBox_editText_hint">Reply</string>
+    <string name="createBook_editTextName_hint">Book Name</string>
+    <string name="createBook_editTextType_hint">Book Type</string>
+    <string name="createBook_button_Text">Create</string>
+    <string name="logout_menu_item">Logout</string>
+    <string name="myProfile_menu_item">My Profile</string>
+    <string name="search_item">Search</string>
+    <string name="leave_button">Leave</string>
+    <string name="join_button">Join</string>
+    <string name="update_chat_data_error">Error getting Chat Data </string>
+    <string name="uploading_image_message">This may take few Seconds Please Wait</string>
+    <string name="finish_uploading_image_message">Image uploaded</string>
+    <string name="notification_message_image_sent">Sent Image</string>
+    <string name="club_created_message">Club Created Successfully</string>
+    <string name="empty_fields_message">Please Fill the Empty Fields</string>
+    <string name="no_books_selected_message">No Books Selected</string>
+    <string name="chat_data_error">Error getting Chat Data </string>
+
+</resources>
