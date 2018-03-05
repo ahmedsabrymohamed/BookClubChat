@@ -7,8 +7,7 @@ import com.fromscratch.mine.bookclub.Adapters.SearchAdapter;
 import java.util.ArrayList;
 
 
-
-public class SearchTask extends AsyncTask<ArrayList<BookClub>,Void,ArrayList<BookClub>> {
+public class SearchTask extends AsyncTask<ArrayList<BookClub>, Void, ArrayList<BookClub>> {
 
     private String query;
 
@@ -21,9 +20,9 @@ public class SearchTask extends AsyncTask<ArrayList<BookClub>,Void,ArrayList<Boo
 
     @Override
     protected ArrayList<BookClub> doInBackground(ArrayList<BookClub>[] arrayLists) {
-        ArrayList<BookClub>clubs=new ArrayList<>();
-        for(BookClub club:arrayLists[0]){
-            if(club.getBookName().toLowerCase().contains(query.toLowerCase())){
+        ArrayList<BookClub> clubs = new ArrayList<>();
+        for (BookClub club : arrayLists[0]) {
+            if (club.getBookName().toLowerCase().contains(query.toLowerCase())) {
                 clubs.add(club);
             }
         }
@@ -31,11 +30,9 @@ public class SearchTask extends AsyncTask<ArrayList<BookClub>,Void,ArrayList<Boo
     }
 
 
-
     @Override
     protected void onPostExecute(ArrayList<BookClub> bookClubArrayList) {
         adapter.addClubs(bookClubArrayList);
-       // adapter.notifyDataSetChanged();
         super.onPostExecute(bookClubArrayList);
     }
 }

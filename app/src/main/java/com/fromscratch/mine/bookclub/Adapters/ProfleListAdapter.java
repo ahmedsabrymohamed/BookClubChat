@@ -20,8 +20,7 @@ public class ProfleListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private List<BookClub> bookClubs;
 
 
-
-    public ProfleListAdapter( ArrayList<BookClub> bookClubs) {
+    public ProfleListAdapter(ArrayList<BookClub> bookClubs) {
 
         this.bookClubs = bookClubs;
 
@@ -53,6 +52,12 @@ public class ProfleListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         return bookClubs.size();
     }
 
+    public void insertItem(BookClub bookClub) {
+
+        bookClubs.add(bookClub);
+        notifyItemInserted(bookClubs.size() - 1);
+    }
+
     class BookClubViewHolder extends RecyclerView.ViewHolder {
 
         final TextView bookName;
@@ -67,13 +72,6 @@ public class ProfleListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
 
 
-
-    }
-
-    public void insertItem(BookClub bookClub){
-
-        bookClubs.add(bookClub);
-        notifyItemInserted(bookClubs.size()-1);
     }
 
 

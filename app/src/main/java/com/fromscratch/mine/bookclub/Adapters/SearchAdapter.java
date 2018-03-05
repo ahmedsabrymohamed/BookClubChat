@@ -18,13 +18,12 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import java.util.ArrayList;
 
 
-
 public class SearchAdapter extends BaseAdapter {
 
     // override other abstract methods here
-    private static final String CLUBS_DATA_BRANCH="clubsData";
-    private static final String CLUBS_EXTRA_DATA_BRANCH="clubsExtraData";
-    private static final String USERS_DATA_BRANCH="Users";
+    private static final String CLUBS_DATA_BRANCH = "clubsData";
+    private static final String CLUBS_EXTRA_DATA_BRANCH = "clubsExtraData";
+    private static final String USERS_DATA_BRANCH = "Users";
 
     ArrayList<BookClub> clubs;
     Context context;
@@ -62,13 +61,13 @@ public class SearchAdapter extends BaseAdapter {
             convertView = getLayoutInflater().inflate(R.layout.search_result_item, container
                     , false);
         }
-        final BookClub club =  getItem(position);
+        final BookClub club = getItem(position);
 
         ((TextView) convertView.findViewById(R.id.book_name_result))
                 .setText(club.getBookName());
         ((TextView) convertView.findViewById(R.id.book_type_result))
                 .setText(club.getBookType());
-        Button button = ( convertView.findViewById(R.id.action_button_search));
+        Button button = (convertView.findViewById(R.id.action_button_search));
         if (club.isSelected()) {
             button.setText(context.getResources().getText(R.string.leave_button));
             button.setBackgroundColor(context.getResources().getColor(R.color.red));
@@ -109,7 +108,7 @@ public class SearchAdapter extends BaseAdapter {
                 .child(mAuth.getCurrentUser().getUid())
                 .setValue(true);
         FirebaseMessaging.getInstance().subscribeToTopic(club.getClubId());
-        //Log.d("ahmed123", "addFabClicked: ");
+
     }
 
     private void leaveClub(BookClub club) {

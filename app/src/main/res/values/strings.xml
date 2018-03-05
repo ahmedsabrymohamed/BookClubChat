@@ -36,5 +36,9 @@
     <string name="empty_fields_message">Please Fill the Empty Fields</string>
     <string name="no_books_selected_message">No Books Selected</string>
     <string name="chat_data_error">Error getting Chat Data </string>
+    <string name="upload_image_button">Upload Image</string>
+    <string name="uploaded_image">Uploaded Image</string>
+    <string name="message_sent">Message Sent</string>
+    <string name="notJoined_message">Your are not in this Club</string>
 
 </resources>

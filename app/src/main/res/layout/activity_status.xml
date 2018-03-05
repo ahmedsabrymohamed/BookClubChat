@@ -2,10 +2,11 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fromscratch.mine.bookclub.StatusActivity"
-    android:id="@+id/main_layout">
+    tools:context="com.fromscratch.mine.bookclub.StatusActivity">
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,16 +24,16 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabMode="fixed"
-            app:tabMaxWidth="0dp"
             app:tabGravity="fill"
-            />
+            app:tabMaxWidth="0dp"
+            app:tabMode="fixed" />
     </android.support.design.widget.AppBarLayout>
+
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
     <android.support.design.widget.FloatingActionButton
@@ -42,11 +43,11 @@
         android:layout_margin="6dp"
         android:clickable="true"
         android:focusable="true"
+        android:onClick="addFabClicked"
         android:src="@drawable/add_button"
         app:backgroundTint="@color/Green"
         app:layout_anchor="@+id/pager"
-        app:layout_anchorGravity="right|bottom"
-        android:onClick="addFabClicked"/>
+        app:layout_anchorGravity="right|bottom" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/delete_floatingActionButton"
@@ -55,11 +56,10 @@
         android:layout_margin="6dp"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/cast_ic_notification_disconnect"
+        android:onClick="deleteFabClicked"
+        android:src="@drawable/social_send_now"
         app:backgroundTint="@color/fui_bgEmail"
         app:layout_anchor="@+id/pager"
         app:layout_anchorGravity="right|bottom"
-        app:rippleColor="@color/fui_bgEmail"
-        app:srcCompat="@drawable/cast_ic_notification_disconnect"
-        android:onClick="deleteFabClicked"/>
+        app:rippleColor="@color/fui_bgEmail" />
 </android.support.design.widget.CoordinatorLayout>

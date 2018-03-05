@@ -4,13 +4,22 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 
+public class LastMessage implements Parcelable {
 
-public class LastMessage  implements Parcelable{
+    public static final Creator<LastMessage> CREATOR = new Creator<LastMessage>() {
+        @Override
+        public LastMessage createFromParcel(Parcel in) {
+            return new LastMessage(in);
+        }
 
+        @Override
+        public LastMessage[] newArray(int size) {
+            return new LastMessage[size];
+        }
+    };
     public String clubName;
     public String messagebody;
     public String userName;
-
 
     protected LastMessage(Parcel in) {
         clubName = in.readString();
@@ -26,18 +35,6 @@ public class LastMessage  implements Parcelable{
         this.messagebody = messagebody;
         this.userName = userName;
     }
-
-    public static final Creator<LastMessage> CREATOR = new Creator<LastMessage>() {
-        @Override
-        public LastMessage createFromParcel(Parcel in) {
-            return new LastMessage(in);
-        }
-
-        @Override
-        public LastMessage[] newArray(int size) {
-            return new LastMessage[size];
-        }
-    };
 
     public String getClubName() {
         return clubName;

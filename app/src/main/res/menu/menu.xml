@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:showAsAction="ifRoom"
-    android:id="@+id/main_layout">
+    android:id="@+id/main_layout"
+    app:showAsAction="ifRoom">
 
     <item
         android:id="@+id/logout_item"
-        android:title="@string/logout_menu_item"
         android:orderInCategory="2"
+        android:title="@string/logout_menu_item"
 
         />
     <item
         android:id="@+id/profile_item"
-        android:title="@string/myProfile_menu_item"
         android:orderInCategory="1"
+        android:title="@string/myProfile_menu_item"
 
         />
-
-
-
-
-
 
 
 </menu>

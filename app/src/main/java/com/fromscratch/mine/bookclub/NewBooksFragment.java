@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,31 +22,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class NewBooksFragment extends Fragment implements BooksListAdapter.SetOncLickListener{
+public class NewBooksFragment extends Fragment implements BooksListAdapter.SetOncLickListener {
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "Uid";
-    private static final String CLUBS_DATA_BRANCH="clubsData";
-
-    private OnSelectedListenerNewBooks mListener;
-    private ArrayList<BookClub> newBookClubArrayList;
-    private String uid;
+    private static final String CLUBS_DATA_BRANCH = "clubsData";
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
     RecyclerView recyclerView;
     LinearLayoutManager manager;
     int position;
-
+    DatabaseReference ref;
+    private OnSelectedListenerNewBooks mListener;
+    private ArrayList<BookClub> newBookClubArrayList;
+    private String uid;
     private BooksListAdapter listAdapter;
-
-
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference ref ;
-    private HashMap<String,BookClub> newBookClubMap;
+    private HashMap<String, BookClub> newBookClubMap;
 
 
     public NewBooksFragment() {
         // Required empty public constructor
     }
-
 
 
     public static NewBooksFragment newInstance(String param1) {
@@ -61,25 +55,21 @@ public class NewBooksFragment extends Fragment implements BooksListAdapter.SetOn
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        newBookClubMap =new HashMap<>();
-        newBookClubArrayList =new ArrayList<>();
-        listAdapter=new BooksListAdapter(getActivity(),this) ;
+        newBookClubMap = new HashMap<>();
+        newBookClubArrayList = new ArrayList<>();
+        listAdapter = new BooksListAdapter(getActivity(), this);
         if (getArguments() != null) {
             uid = getArguments().getString(ARG_PARAM1);
         }
 
         ref = database.getReference(CLUBS_DATA_BRANCH);
-        if(savedInstanceState!=null)
-        {
-            ArrayList<BookClub>clubs=savedInstanceState.getParcelableArrayList("newSelectedClubs");
-            for(BookClub club:clubs)
-                newBookClubMap.put(club.getClubId(),club);
-          //  ArrayList<BookClub>bookClubs=savedInstanceState.getParcelableArrayList("list");
-         //   listAdapter.setBookClubs(newBookClubMap,bookClubs);
-
+        if (savedInstanceState != null) {
+            ArrayList<BookClub> clubs = savedInstanceState.getParcelableArrayList("newSelectedClubs");
+            for (BookClub club : clubs)
+                newBookClubMap.put(club.getClubId(), club);
 
         }
-      //  else
+
         getData();
 
 
@@ -89,24 +79,21 @@ public class NewBooksFragment extends Fragment implements BooksListAdapter.SetOn
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View root=inflater.inflate(R.layout.fragment_new_books, container, false);
+        View root = inflater.inflate(R.layout.fragment_new_books, container, false);
 
-        manager=new LinearLayoutManager(getActivity());
-        recyclerView=root.findViewById(R.id.newBooks_list);
+        manager = new LinearLayoutManager(getActivity());
+        recyclerView = root.findViewById(R.id.newBooks_list);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(listAdapter);
-        if(savedInstanceState!=null)
-            position=savedInstanceState.getInt("listPosition");
+        if (savedInstanceState != null)
+            position = savedInstanceState.getInt("listPosition");
         else
-            position=0;
-
+            position = 0;
 
 
         return root;
     }
-
-
 
 
     @Override
@@ -124,17 +111,12 @@ public class NewBooksFragment extends Fragment implements BooksListAdapter.SetOn
     }
 
     @Override
-    public void OnSelectChange(HashMap<String,BookClub> bookClubsSelected) {
+    public void OnSelectChange(HashMap<String, BookClub> bookClubsSelected) {
 
-        newBookClubMap =bookClubsSelected;
+        newBookClubMap = bookClubsSelected;
         mListener.onSelectedChangeNewBooks(bookClubsSelected);
     }
 
-
-
-    public interface OnSelectedListenerNewBooks {
-         void onSelectedChangeNewBooks(HashMap<String,BookClub> bookClubsSelected);
-    }
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -154,38 +136,42 @@ public class NewBooksFragment extends Fragment implements BooksListAdapter.SetOn
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putParcelableArrayList("newSelectedClubs",new ArrayList<>(newBookClubMap.values()));
+        outState.putParcelableArrayList("newSelectedClubs", new ArrayList<>(newBookClubMap.values()));
         outState.putInt("listPosition",
                 manager.findFirstCompletelyVisibleItemPosition());
         super.onSaveInstanceState(outState);
     }
 
-private void getData(){
-    ref.orderByChild("Users/"+uid).equalTo(null).addValueEventListener(new ValueEventListener() {
+    private void getData() {
+        ref.orderByChild("Users/" + uid).equalTo(null).addValueEventListener(new ValueEventListener() {
 
-        @Override
-        public void onDataChange(DataSnapshot dataSnapshot) {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-            newBookClubArrayList.clear();
-            for (final DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                newBookClubArrayList.clear();
+                for (final DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
 
-                BookClub bookClub=postSnapshot.getValue(BookClub.class);
-                bookClub.setClubId(postSnapshot.getKey());
-                newBookClubArrayList.add(bookClub);
+                    BookClub bookClub = postSnapshot.getValue(BookClub.class);
+                    bookClub.setClubId(postSnapshot.getKey());
+                    newBookClubArrayList.add(bookClub);
+
+
+                }
+                listAdapter.refresh();
+                listAdapter.setBookClubs(newBookClubMap, newBookClubArrayList);
+                recyclerView.scrollToPosition(position);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
 
             }
-            listAdapter.refresh();
-            listAdapter.setBookClubs(newBookClubMap, newBookClubArrayList);
-            recyclerView.scrollToPosition(position);
-          //  Log.d("ahmed123", "onDataChange: "+position);
-        }
+        });
+    }
 
-        @Override
-        public void onCancelled(DatabaseError databaseError) {
-
-           // Log.d("ahmed", "onCancelled: "+databaseError.getMessage());
-        }
-    });
-}
+    public interface OnSelectedListenerNewBooks {
+        void onSelectedChangeNewBooks(HashMap<String, BookClub> bookClubsSelected);
+    }
 }

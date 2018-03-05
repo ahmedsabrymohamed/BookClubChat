@@ -4,31 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 
-
-public class BookClub  implements Parcelable{
-
-    public String bookName;
-    public String bookType;
-    public String clubId;
-    private boolean selected;
-
-    public BookClub(){
-
-    }
-    public BookClub(String bookName, String bookType , String clubId) {
-        this.bookName = bookName;
-        this.bookType = bookType;
-        this.clubId = clubId;
-        this.selected=false;
-    }
-
-
-    protected BookClub(Parcel in) {
-        bookName = in.readString();
-        bookType = in.readString();
-        clubId = in.readString();
-        selected = in.readByte() != 0;
-    }
+public class BookClub implements Parcelable {
 
     public static final Creator<BookClub> CREATOR = new Creator<BookClub>() {
         @Override
@@ -41,6 +17,29 @@ public class BookClub  implements Parcelable{
             return new BookClub[size];
         }
     };
+    public String bookName;
+    public String bookType;
+    public String clubId;
+    private boolean selected;
+
+    public BookClub() {
+
+    }
+
+
+    public BookClub(String bookName, String bookType, String clubId) {
+        this.bookName = bookName;
+        this.bookType = bookType;
+        this.clubId = clubId;
+        this.selected = false;
+    }
+
+    protected BookClub(Parcel in) {
+        bookName = in.readString();
+        bookType = in.readString();
+        clubId = in.readString();
+        selected = in.readByte() != 0;
+    }
 
     public boolean isSelected() {
         return selected;

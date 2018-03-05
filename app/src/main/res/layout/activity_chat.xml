@@ -20,6 +20,7 @@
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
     </android.support.design.widget.AppBarLayout>
+
     <RelativeLayout
 
         android:layout_width="match_parent"
@@ -44,9 +45,9 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
+                android:contentDescription="@string/upload_image_button"
                 android:onClick="pickPhoto"
-                app:srcCompat="@drawable/content_new_picture"
-                />
+                app:srcCompat="@drawable/content_new_picture" />
 
             <EditText
                 android:id="@+id/body"

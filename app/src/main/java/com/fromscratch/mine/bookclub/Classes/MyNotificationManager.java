@@ -16,12 +16,12 @@ import com.fromscratch.mine.bookclub.R;
 
 public class MyNotificationManager {
 
-    Context context;
     public static final int NOTIFICATION_ID = 101;
     public static final String NOTIFICATION_CHANNEL_ID = "101";
-    private static final String CHAT_ID_KEY="chatID";
-    private static final String CHAT_NAME_KEY="chatName";
-    private static final String RING_PATH="://" + "com.fromscratch.mine.bookclub" + "/raw/notification_ring_tone";
+    private static final String CHAT_ID_KEY = "chatID";
+    private static final String CHAT_NAME_KEY = "chatName";
+    private static final String RING_PATH = "://" + "com.fromscratch.mine.bookclub" + "/raw/notification_ring_tone";
+    Context context;
 
     MyNotificationManager(Context mContext) {
         this.context = mContext;
@@ -59,7 +59,7 @@ public class MyNotificationManager {
     public void playNotificationSound() {
         try {
             Uri alarmSound = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE
-                    +RING_PATH );
+                    + RING_PATH);
             Ringtone r = RingtoneManager.getRingtone(context, alarmSound);
             r.play();
         } catch (Exception e) {

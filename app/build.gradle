@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'key0'
             keyPassword 'moon12399'
-            storeFile file('/home/mine/Desktop/my/BookApp.jks')
+            storeFile file("$rootDir/BookApp.jks")
             storePassword 'moon12399'
         }
     }
@@ -17,7 +17,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        multiDexEnabled true
+        //multiDexEnabled true
     }
     buildTypes {
         release {
@@ -42,11 +42,9 @@ dependencies {
     compile 'com.google.firebase:firebase-core:11.8.0'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    implementation 'com.google.android.gms:play-services:11.8.0'
     implementation 'com.facebook.android:facebook-login:[4,5)'
     implementation 'com.firebaseui:firebase-ui-auth:3.2.1'
     compile 'com.android.support:design:26.1.0'
-    // Include all the Twitter APIs
     compile 'com.twitter.sdk.android:twitter:3.0.0'
     implementation 'com.android.support:recyclerview-v7:26.1.0'
     compile 'de.hdodenhof:circleimageview:2.2.0'

@@ -4,12 +4,21 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 
-
 public class UserData implements Parcelable {
+    public static final Creator<UserData> CREATOR = new Creator<UserData>() {
+        @Override
+        public UserData createFromParcel(Parcel in) {
+            return new UserData(in);
+        }
+
+        @Override
+        public UserData[] newArray(int size) {
+            return new UserData[size];
+        }
+    };
     public String uid;
     public String userName;
     public String profileImage;
-
 
     public UserData(String uid, String userName, String profileImage) {
         this.userName = userName;
@@ -48,18 +57,6 @@ public class UserData implements Parcelable {
     public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
     }
-
-    public static final Creator<UserData> CREATOR = new Creator<UserData>() {
-        @Override
-        public UserData createFromParcel(Parcel in) {
-            return new UserData(in);
-        }
-
-        @Override
-        public UserData[] newArray(int size) {
-            return new UserData[size];
-        }
-    };
 
     @Override
     public int describeContents() {

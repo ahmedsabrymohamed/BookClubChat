@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="250dp"
-    android:layout_height="wrap_content"
-    >
+    android:layout_height="wrap_content">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/profile_image"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/profile_image"
-        app:civ_border_width="2dp"
-        app:civ_border_color="#fff"/>
+        app:civ_border_color="#fff"
+        app:civ_border_width="2dp" />
+
     <ImageView
+        android:id="@+id/image_body"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:background="@drawable/sender_text_message_background"
-        android:layout_below="@+id/sender_name"
         android:layout_alignStart="@id/sender_name"
+        android:layout_below="@+id/sender_name"
+        android:background="@drawable/sender_text_message_background"
+        android:contentDescription="@string/uploaded_image"
         android:padding="16dp"
-        android:scaleType="fitXY"
-        android:id="@+id/image_body"/>
-    <TextView
-        android:layout_toEndOf="@id/profile_image"
-        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:scaleType="fitXY" />
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/sender_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#515050"
-        android:id="@+id/sender_name"
-        android:textSize="@dimen/chat_item_name"
-        android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@id/profile_image"
+        android:textColor="#515050"
+        android:textSize="@dimen/chat_item_name"
 
         />
 
@@ -38,6 +38,6 @@
         android:id="@+id/timestamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/image_body"
-        android:layout_alignEnd="@id/image_body"/>
+        android:layout_alignEnd="@id/image_body"
+        android:layout_below="@id/image_body" />
 </RelativeLayout>

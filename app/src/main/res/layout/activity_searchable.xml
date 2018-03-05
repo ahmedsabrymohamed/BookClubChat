@@ -7,10 +7,9 @@
     tools:context="com.fromscratch.mine.bookclub.SearchableActivity">
 
     <ListView
+        android:id="@+id/search_result_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/search_result_list"
         android:clickable="true"
-        android:focusable="true"
-        />
+        android:focusable="true" />
 </android.support.constraint.ConstraintLayout>

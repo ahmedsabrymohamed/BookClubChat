@@ -10,13 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.fromscratch.mine.bookclub.Classes.BookClub;
 import com.fromscratch.mine.bookclub.Classes.ChatMessage;
 import com.fromscratch.mine.bookclub.Classes.UserData;
 import com.fromscratch.mine.bookclub.ProfileActivity;
 import com.fromscratch.mine.bookclub.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,19 +25,19 @@ import com.squareup.picasso.Picasso;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 
 
 public class ChatDataAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private static final String USER_ID = "Uid";
+    private static final String USERS_DATA_BRANCH = "UsersData";
+    SimpleDateFormat sfd;
     // private final SetOncLickListener mListener;
     private Context mContext;
     private String uid;
     private ArrayList<ChatMessage> chatMessages;
     private DatabaseReference mDatabase;
-    SimpleDateFormat sfd;
-    private static final String USER_ID="Uid";
-    private static final String USERS_DATA_BRANCH="UsersData";
+
     public ChatDataAdapter(Context context) {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -49,24 +47,14 @@ public class ChatDataAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         chatMessages = new ArrayList<>();
         sfd = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
-        //  mListener = (SetOncLickListener) Listener;
-        //  this.Width = dpWidth;
 
     }
-
-
-
-    public  void setChatMessages(ArrayList<ChatMessage> chatMessages) {
-        this.chatMessages = chatMessages;
-        this.notifyDataSetChanged();
-    }
-
 
     public void insertItem(ChatMessage chatMessage) {
 
         chatMessages.add(chatMessage);
         notifyDataSetChanged();
-       // chatList.smoothScrollToPosition(chatMessages.size() - 1);
+
     }
 
     @Override
@@ -213,12 +201,14 @@ public class ChatDataAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return chatMessages;
     }
 
-    /*public interface SetOncLickListener {
-        void SetOnclick(Object obj);
-    }*/
+    public void setChatMessages(ArrayList<ChatMessage> chatMessages) {
+        this.chatMessages = chatMessages;
+        this.notifyDataSetChanged();
+    }
+
 
     class ReceivedMessageViewHolder extends RecyclerView.ViewHolder {
-        //implements View.OnClickListener {
+
 
         private TextView time;
         private TextView messageBody;
@@ -233,19 +223,14 @@ public class ChatDataAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             senderName = itemView.findViewById(R.id.sender_name);
             profileImage = itemView.findViewById(R.id.profile_image);
 
-            //itemView.setOnClickListener(this);
 
         }
 
-        /*@Override
-        public void onClick(View view) {
 
-            mListener.SetOnclick(chatMessages.get(getAdapterPosition()));
-        }*/
     }
 
     class ReceivedImageViewHolder extends RecyclerView.ViewHolder {
-        //implements View.OnClickListener {
+
 
         private TextView time;
         private ImageView messageBody;
@@ -265,20 +250,16 @@ public class ChatDataAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                 }
             });
-            //itemView.setOnClickListener(this);
+
 
         }
 
-        /*@Override
-        public void onClick(View view) {
 
-            mListener.SetOnclick(chatMessages.get(getAdapterPosition()));
-        }*/
     }
 
 
     class SentMessageViewHolder extends RecyclerView.ViewHolder {
-        // implements View.OnClickListener {
+
 
         private TextView time;
         private TextView messageBody;
@@ -288,14 +269,13 @@ public class ChatDataAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             super(itemView);
             time = itemView.findViewById(R.id.timestamp);
             messageBody = itemView.findViewById(R.id.message_body);
-            //itemView.setOnClickListener(this);
+
 
         }
 
     }
 
     class SentImageViewHolder extends RecyclerView.ViewHolder {
-        // implements View.OnClickListener {
 
         private TextView time;
         private ImageView messageBody;
@@ -305,7 +285,7 @@ public class ChatDataAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             super(itemView);
             time = itemView.findViewById(R.id.timestamp);
             messageBody = itemView.findViewById(R.id.image_body);
-            //itemView.setOnClickListener(this);
+
 
         }
 

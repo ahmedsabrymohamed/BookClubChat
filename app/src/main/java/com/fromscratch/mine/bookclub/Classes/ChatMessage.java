@@ -3,41 +3,8 @@ package com.fromscratch.mine.bookclub.Classes;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.firebase.database.Exclude;
-
-import java.util.Map;
-
-/**
- * Created by mine on 26/02/18.
- */
 
 public class ChatMessage implements Parcelable {
-
-    public String messageID;
-    public String messageBody;
-    public String messageAuthorUID;
-    public Object timeStamp;
-    public boolean image;
-
-    public ChatMessage() {
-    }
-
-    public ChatMessage(String messageID, String messageBody, String uid,Object time,boolean image) {
-        this.messageID = messageID;
-        this.messageBody = messageBody;
-        this.messageAuthorUID = uid;
-        this.timeStamp=time;
-        this.image=image;
-
-    }
-
-
-    protected ChatMessage(Parcel in) {
-        messageID = in.readString();
-        messageBody = in.readString();
-        messageAuthorUID = in.readString();
-        image = in.readByte() != 0;
-    }
 
     public static final Creator<ChatMessage> CREATOR = new Creator<ChatMessage>() {
         @Override
@@ -50,6 +17,31 @@ public class ChatMessage implements Parcelable {
             return new ChatMessage[size];
         }
     };
+    public String messageID;
+    public String messageBody;
+    public String messageAuthorUID;
+    public Object timeStamp;
+    public boolean image;
+
+    public ChatMessage() {
+    }
+
+
+    public ChatMessage(String messageID, String messageBody, String uid, Object time, boolean image) {
+        this.messageID = messageID;
+        this.messageBody = messageBody;
+        this.messageAuthorUID = uid;
+        this.timeStamp = time;
+        this.image = image;
+
+    }
+
+    protected ChatMessage(Parcel in) {
+        messageID = in.readString();
+        messageBody = in.readString();
+        messageAuthorUID = in.readString();
+        image = in.readByte() != 0;
+    }
 
     /*public Long getTimeStamp(){
             return (Long)timeStamp;

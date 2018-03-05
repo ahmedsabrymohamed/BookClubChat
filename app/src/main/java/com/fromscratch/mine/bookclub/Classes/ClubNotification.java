@@ -4,9 +4,19 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 
-
 public class ClubNotification implements Parcelable {
 
+    public static final Creator<ClubNotification> CREATOR = new Creator<ClubNotification>() {
+        @Override
+        public ClubNotification createFromParcel(Parcel in) {
+            return new ClubNotification(in);
+        }
+
+        @Override
+        public ClubNotification[] newArray(int size) {
+            return new ClubNotification[size];
+        }
+    };
     private String title;
     private String notificationMessage;
     private String chatID;
@@ -18,28 +28,25 @@ public class ClubNotification implements Parcelable {
         notificationMessage = in.readString();
         chatID = in.readString();
         chatName = in.readString();
-        senderUid=in.readString();
+        senderUid = in.readString();
     }
 
-    public ClubNotification(String title, String notificationMessage, String chatID,String chatName
-    ,String senderUid) {
+    public ClubNotification(String title, String notificationMessage, String chatID, String chatName
+            , String senderUid) {
         this.title = title;
         this.notificationMessage = notificationMessage;
         this.chatID = chatID;
-        this.chatName=chatName;
-        this.senderUid=senderUid;
+        this.chatName = chatName;
+        this.senderUid = senderUid;
     }
 
     public String getChatName() {
         return chatName;
     }
 
-
-
     public String getTitle() {
         return title;
     }
-
 
     public String getNotificationMessage() {
         return notificationMessage;
@@ -60,18 +67,6 @@ public class ClubNotification implements Parcelable {
     public String getSenderUid() {
         return senderUid;
     }
-
-    public static final Creator<ClubNotification> CREATOR = new Creator<ClubNotification>() {
-        @Override
-        public ClubNotification createFromParcel(Parcel in) {
-            return new ClubNotification(in);
-        }
-
-        @Override
-        public ClubNotification[] newArray(int size) {
-            return new ClubNotification[size];
-        }
-    };
 
     @Override
     public int describeContents() {
