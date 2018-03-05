@@ -40,5 +40,7 @@
     <string name="uploaded_image">Uploaded Image</string>
     <string name="message_sent">Message Sent</string>
     <string name="notJoined_message">Your are not in this Club</string>
+    <string name="remove_button">Remove Club</string>
+    <string name="add_button">Add Club</string>
 
 </resources>
